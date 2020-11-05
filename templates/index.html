@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Github Repo List</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <form class="box" action="/get-repos" autocomplete="off">
+              <h1>Github Repository List</h1>
+              <p class="text-muted">Please enter your preferred details!</p>
+              <input type="text" name="orgName" placeholder="Organization" />
+              <input
+                type="text"
+                name="topNRepos"
+                placeholder="Number of top Repositories"
+              />
+              <input
+                type="text"
+                name="topMCommiters"
+                placeholder="Number of top Committers"
+              />
+              <input type="hidden" name="pageNo" value="1" />
+              <input type="submit" value="Query Organization" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

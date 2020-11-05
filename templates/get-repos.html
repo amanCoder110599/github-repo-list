@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Github Repo List</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/main.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Staatliches&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <h1>
+      {{organization}}
+      <br />
+    </h1>
+    {% for repo in repos %}
+    <h3>
+      Repository : <a href="{{repo.get_url()}}">{{repo.get_id()}}</a>
+      <br />
+      Repo Fork Count : {{repo.get_fork_count()}}
+      <br />
+    </h3>
+    <table>
+        <tr>
+          <th>Contributor</th>
+          <th>Commits</th>
+        </tr>
+        {% for contri in repo.get_contributors() %}
+        <tr>
+            <th><a href="{{contri.get_url()}}">{{contri.get_id()}}</th>
+            <th>{{contri.get_commit_count()}}</th>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endfor %}
+  </body>
+</html>
