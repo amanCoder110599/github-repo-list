@@ -10,7 +10,7 @@ headers = {
 }
 
 PAGE_LIMIT = 5
-page_url = "http://127.0.0.1:5000/get-repos?orgName={}&topNRepos={}&topMCommiters={}&pageNo={}"
+page_url = "/get-repos?orgName={}&topNRepos={}&topMCommiters={}&pageNo={}"
 
 def getRepos(orgName, topNRepos, topMCommiters, pageNo):
     x = max(0, min(int(topNRepos) - (pageNo - 1) * PAGE_LIMIT, PAGE_LIMIT))
