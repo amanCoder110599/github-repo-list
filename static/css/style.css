@@ -15,6 +15,7 @@ body {
   text-align: center;
   transition: 0.25s;
   margin-top: 100px;
+  border-radius: 30px;
 }
 
 .box input[type="text"] {

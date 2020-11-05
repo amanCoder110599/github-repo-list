@@ -22,10 +22,23 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
   <body>
-    <h1>
-      {{organization}}
-      <br />
-    </h1>
+    <div class="orgHeading">
+      <div class="home-page">
+        <a class="btn" href="/"><i class="fa fa-home"></i></a>
+      </div>
+      <div class="orgName">
+        <h1>{{organization}}</h1>
+      </div>
+    </div>
+    <div class="page-traversal">
+      <ul class="pager">
+        {% if "#" != prevPage %}
+        <li><a href="{{prevPage}}">Previous Page</a></li>
+        {% endif %} {% if "#" != nextPage %}
+        <li><a href="{{nextPage}}">Next Page</a></li>
+        {% endif %}
+      </ul>
+    </div>
     {% for repo in repos %}
     <div class="limiter">
       <div class="container-table100">

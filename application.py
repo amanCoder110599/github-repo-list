@@ -14,10 +14,14 @@ def getList():
     topNRepos = request.args.get('topNRepos')
     topMCommiters = request.args.get('topMCommiters')
     pageNo = int(request.args.get('pageNo', '1'))
-    repos, prevPage, nextPage = getRepos(orgName, topNRepos, topMCommiters, pageNo)
-    if(repos == "404"):   
-        return 'No repositories available'
-    return render_template('get-repos.html', repos = repos, organization = orgName.upper(), prevPage = prevPage, nextPage = nextPage)
+    try:
+        repos, prevPage, nextPage = getRepos(orgName, topNRepos, topMCommiters, pageNo)
+        if(repos == "404" or len(repos) == 0):   
+            return 'No repositories available'
+        return render_template('get-repos.html', repos = repos, organization = orgName.upper(), prevPage = prevPage, nextPage = nextPage)
+    except Exception as exe:
+        return 'Please enter correct parameters'
+    
 
 if __name__ == "__main__":
     app.run()

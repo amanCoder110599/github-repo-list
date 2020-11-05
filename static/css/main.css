@@ -283,3 +283,33 @@ h1 {
   display: flex;
   justify-content: center;
 }
+
+.orgHeading {
+  position: relative;
+  padding-top: 30px;
+  width: 100%;
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.orgName {
+  color: white;
+  left: 600px;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.orgName.h1 {
+  text-align: center;
+}
+
+.btn {
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 12px 16px;
+  margin-left: 30px;
+  font-size: 16px;
+  cursor: pointer;
+}
