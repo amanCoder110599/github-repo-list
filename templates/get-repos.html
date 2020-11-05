@@ -19,6 +19,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
   <body>
     <h1>
@@ -26,24 +27,83 @@
       <br />
     </h1>
     {% for repo in repos %}
-    <h3>
-      Repository : <a href="{{repo.get_url()}}">{{repo.get_id()}}</a>
-      <br />
-      Repo Fork Count : {{repo.get_fork_count()}}
-      <br />
-    </h3>
-    <table>
-        <tr>
-          <th>Contributor</th>
-          <th>Commits</th>
-        </tr>
-        {% for contri in repo.get_contributors() %}
-        <tr>
-            <th><a href="{{contri.get_url()}}">{{contri.get_id()}}</th>
-            <th>{{contri.get_commit_count()}}</th>
-        </tr>
-        {% endfor %}
-    </table>
+    <div class="limiter">
+      <div class="container-table100">
+        <div class="wrap-table100">
+          <div class="table100 ver3 m-b-110">
+            <div class="table100-head">
+              <table>
+                <thead>
+                  <tr class="row100 head">
+                    <th class="cell100 column1">
+                      Repository :
+                      <a href="{{repo.get_url()}}" target="_blank"
+                        >{{repo.get_id()}}</a
+                      >
+                    </th>
+                    <th class="cell100 column1">
+                      Fork Count : {{repo.get_fork_count()}}
+                    </th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="limiter">
+      <div class="container-table100">
+        <div class="wrap-table100">
+          <div class="table100 ver3 m-b-110">
+            <div class="table100-head">
+              <table>
+                <thead>
+                  <tr class="row100 head">
+                    <th class="cell100 column1">Contributor</th>
+                    <th class="cell100 column2">Commits</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <div class="table100-body js-pscroll">
+              <table>
+                <tbody>
+                  {% for contri in repo.get_contributors() %}
+                  <tr class="row100 body">
+                    <td class="cell100 column1">
+                      <a href="{{contri.get_url()}}" target="_blank"
+                        >{{contri.get_id()}}</a
+                      >
+                    </td>
+                    <td class="cell100 column2">
+                      {{contri.get_commit_count()}}
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
     {% endfor %}
+
+    <div class="page-traversal">
+      <ul class="pager">
+        {% if "#" != prevPage %}
+        <li><a href="{{prevPage}}">Previous Page</a></li>
+        {% endif %} {% if "#" != nextPage %}
+        <li><a href="{{nextPage}}">Next Page</a></li>
+        {% endif %}
+      </ul>
+    </div>
   </body>
 </html>

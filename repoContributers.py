@@ -17,6 +17,16 @@ def getRepos(orgName, topNRepos, topMCommiters, pageNo):
         organization = orgName, limit = PAGE_LIMIT, pageNo = str(pageNo)), headers=headers).json()
     if "message" in repos_json:
         return "404"     
+    repos_json_next = requests.get(repo_url.format(
+        organization = orgName, limit = PAGE_LIMIT, pageNo = str(pageNo + 1)), headers=headers).json()
+    nextPage = "#"
+    prevPage = "#"
+    nextPageNo = pageNo + 1
+    prevPageNo = pageNo - 1
+    if(repos_json_next != 404 and x == PAGE_LIMIT):
+        nextPage = "http://127.0.0.1:5000/get-repos?orgName="+ orgName + "&topNRepos="+topNRepos + "&topMCommiters=" + topMCommiters + "&pageNo="+ str(nextPageNo)
+    if(pageNo > 1):
+        prevPage = "http://127.0.0.1:5000/get-repos?orgName="+ orgName + "&topNRepos="+topNRepos + "&topMCommiters=" + topMCommiters + "&pageNo="+ str(prevPageNo)
     repos = []
     cnt = 0
     for repo in repos_json["items"]:
@@ -26,7 +36,7 @@ def getRepos(orgName, topNRepos, topMCommiters, pageNo):
         contributors = get_contributors(orgName, repo["name"], topMCommiters)
         repos.append(Repository(repo["name"], repo["html_url"],
                           repo['forks_count'], contributors))
-    return repos
+    return repos, prevPage, nextPage
 
 def get_contributors(orgName, repo, m):
     contributors_json = requests.get(contributors_url.format(
