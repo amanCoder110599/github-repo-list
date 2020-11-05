@@ -22,6 +22,3 @@ def getList():
     except Exception as exe:
         return 'Please enter correct parameters'
     
-
-if __name__ == "__main__":
-    app.run()
