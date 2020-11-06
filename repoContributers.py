@@ -6,7 +6,7 @@ repo_url = "https://api.github.com/search/repositories?q=org:{organization}&sort
 contributors_url = "https://api.github.com/repos/{organization}/{repo}/contributors?page={page_no}"
 
 # Add your Github API Authentication Token
-token = "c84a0a61815b45f7e1a8a0bd8da0cf5486f3e6d6"
+token = ""
 
 headers = {
     "Authorization": "Token " + token
