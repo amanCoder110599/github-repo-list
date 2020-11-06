@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, redirect, jsonify
+from flask import Flask, render_template, request
 from repoContributers import getRepos
 
 
@@ -10,15 +10,15 @@ def index():
 
 @app.route('/get-repos', methods=['GET'])
 def getList():
-    orgName = request.args.get('orgName')
-    topNRepos = request.args.get('topNRepos')
-    topMCommiters = request.args.get('topMCommiters')
-    pageNo = int(request.args.get('pageNo', '1'))
+    org_name = request.args.get('org_name')
+    top_n_repos = request.args.get('top_n_repos')
+    top_m_commiters = request.args.get('top_m_commiters')
+    page_no = int(request.args.get('page_no', '1'))
     try:
-        repos, prevPage, nextPage = getRepos(orgName, topNRepos, topMCommiters, pageNo)
+        repos, prevPage, nextPage = getRepos(org_name, top_n_repos, top_m_commiters, page_no)
         if(repos == "404" or len(repos) == 0):   
             return 'No repositories available'
-        return render_template('get-repos.html', repos = repos, organization = orgName.upper(), prevPage = prevPage, nextPage = nextPage)
-    except Exception as exe:
+        return render_template('get-repos.html', repos = repos, organization = org_name.upper(), prevPage = prevPage, nextPage = nextPage)
+    except:
         return 'Please enter correct parameters'
     
