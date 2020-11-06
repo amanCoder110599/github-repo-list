@@ -6,13 +6,15 @@ repo_url = "https://api.github.com/search/repositories?q=org:{organization}&sort
 contributors_url = "https://api.github.com/repos/{organization}/{repo}/contributors?page={page_no}"
 
 # Add your Github API Authentication Token
-token = "47288f2790fcf82adf9dd3e59c74dbb2e0667de2"
+token = ""
 
 headers = {
     "Authorization": "Token " + token
 }
 
+#5 repositories at a time is fetched from the Github API.
 PAGE_LIMIT = 5
+
 PAGE_URL = "/get-repos?org_name={}&top_n_repos={}&top_m_commiters={}&page_no={}"
 
 def getRepos(org_name, top_n_repos, top_m_commiters, page_no):
