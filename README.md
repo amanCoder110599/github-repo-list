@@ -7,7 +7,7 @@ github-repo-list is a Flask web application which finds the n most popular repos
 Install all the dependencies with
 
 ```bash
-   pip install -r requirements.txt
+   pip3 install -r requirements.txt
 ```
 
 ## Usage
