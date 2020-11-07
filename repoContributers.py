@@ -18,7 +18,6 @@ PAGE_LIMIT = 5
 PAGE_URL = "/get-repos?org_name={}&top_n_repos={}&top_m_commiters={}&page_no={}"
 
 def getRepos(org_name, top_n_repos, top_m_commiters, page_no):
-    print(org_name, top_n_repos, top_m_commiters, page_no)
     x = max(0, min(int(top_n_repos) - (page_no - 1) * PAGE_LIMIT, PAGE_LIMIT))
     repos_json = requests.get(repo_url.format(
         organization = org_name, limit = PAGE_LIMIT, page_no = str(page_no)), headers=headers).json()
@@ -35,8 +34,8 @@ def getRepos(org_name, top_n_repos, top_m_commiters, page_no):
     
     nextpage_no = page_no + 1
     prevpage_no = page_no - 1
-    
-    if("message" in repos_json_next or x == PAGE_LIMIT):
+
+    if("message" not in repos_json_next and len(repos_json_next["items"]) > 0 and page_no * PAGE_LIMIT < int(top_n_repos)):
         next_page = PAGE_URL.format(org_name, top_n_repos, top_m_commiters, str(nextpage_no))
     if(page_no > 1):
         prev_page = PAGE_URL.format(org_name, top_n_repos, top_m_commiters, str(prevpage_no))
