@@ -16,7 +16,7 @@ Install all the dependencies with
 
 2. Run the python file `wsgi.py` using
    ```bash
-   python wsgi.py
+   python3 wsgi.py
    ```
 
 This starts the FLASK_APP in port 5000.
